@@ -1,14 +1,19 @@
 'use client'
-
-import Script from "next/script"
+import { useSearchParams   } from 'next/navigation'
+import { useEffect } from 'react'
 
 export function Shop() {
+  const params = useSearchParams  ()
+    const shopid = params.get("shop");
+
+  useEffect(()=>{
+    console.log("Loaded")
+    window && window.MWS && window.MWS.init();
+  })
 
   return (
     <>
-<link href="https://embed.minimalwebshop.com/v1.css" rel="stylesheet" />
-    <Script type="module" src="https://embed.minimalwebshop.com/v1.js" />
-<div mws="UGUXCQHK" />
-  </>
+      <div mws={shopid} />
+    </>
 )
 }
